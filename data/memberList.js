@@ -3,25 +3,32 @@ const data=[
 {
     title:"個人基本資料",
     type:"memberData",
-    bindErr:"errhandle"
+    bindErr:"errhandle",
+    href:"/home"
   }
   ,
   {
     title:"付款方式設定",
     type:"paymentWay", 
-    bindErr:"errhandle"
+    bindErr:"errhandle",
+    href:"/home"
+
   } 
   ,{
    
     title:"商品與QRcode",
  type:"productQrcode",
-    bindErr:"errhandle"
+    bindErr:"errhandle",
+    href:"/home"
+
   }
   ,
   {
     title:"我的點數",
     type:"mTicket", 
-    bindErr:"errhandle"
+    bindErr:"errhandle",
+    href:"/home"
+
   }
 
   ,{

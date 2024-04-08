@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import dataBirth from "@/data/birthday"
 import classNames from 'classnames';
 import styles from"@/styles/form.module.css"
+import memberFormUpdate from '@/api/memberFormUpdate';
 
 
 export default function PersonForm() {
@@ -19,19 +20,12 @@ export default function PersonForm() {
   const [birthY, setBirthY] = useState([]);
   const [birthM, setBirthM] = useState([]);
   const [birthD, setBirthD] = useState([]);
-  const onSubmit = (data) => console.log(data)
+
   useEffect(() => {
     setBirthY(dataBirth.years());
-    setBirthM(dataBirth.month());
-    // setBirthD(dataBirth.date());
-
+    setBirthM(dataBirth.month());  
   }, [])
-  useEffect(() => {
-    setBirthY(dataBirth.years());
-    setBirthM(dataBirth.month());
-    // setBirthD(dataBirth.date());
-
-  }, [])
+ 
   const selectChange = () => {
     const dateD = dataBirth.date(yearVal.current.value, monthVal.current.value);
     setBirthD(dateD)
@@ -48,17 +42,28 @@ export default function PersonForm() {
     }
   }; 
 
+  const password = React.useRef({});
+  password.current = watch("passwordErr", "");
   const repasswordErr=  {
     name: "repasswordErr",
     setting: {
       required: { value: true, message: "此欄位必填" },
       minLength: { value: 5, message: " 5-20個字" },
       maxLength: { value: 20, message: "5-20個字" },
-      parent: {
+      pattern: {
         value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{5,20}$/,
         message: "至少一個數字、大小寫、 5-20 個字"
       }, 
-    },
+      validate: {
+        taipei: (value) => {
+          
+          if (value!= password.current) {
+            return "密碼不相同";
+          }
+          return true;
+        },
+      },
+    }
   };
   const passwordErr= {
     name: "passwordErr",
@@ -66,7 +71,7 @@ export default function PersonForm() {
       required: { value: true, message: "此欄位必填" },
       minLength: { value: 5, message: "5-20個字" },
       maxLength: { value: 20, message: "5-20個字" },
-      parent: {
+      pattern: {
         value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{5,20}$/,
         message: "至少一個數字、大小寫、 5-20 個字"
       },
@@ -97,21 +102,31 @@ export default function PersonForm() {
       required: { value: true, message: "此欄位必填" },
     },
   } 
+
+
+    // 送出表單
+    const onSubmit = async(formData,e) =>{ 
+      e.preventDefault();  
+      const urlEncodedData = new URLSearchParams(formData).toString();
+     const result=await memberFormUpdate.formUpdate(urlEncodedData);
+     console.log(result)
+     
+     }
   return (
     <div>
       <div className="container">
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} method="POST">
           <div className="row">
             <div className={`col-12 col-md-12`}>
               <label htmlFor="exampleInputId" className="form-label">帳號</label>
               <input type="text"
                 {...register("idInputErr", idInputErr.setting)}
-                onInput={handleSubmit(onSubmit)}
+                // onInput={handleSubmit(onSubmit)}
                 // className={(errors.idInputErr && styles["inputErr"]) +" form-control"} 
                 className={classNames(errors.idInputErr?styles["inputErr"]:"","form-control")}
                 id="exampleInputId" aria-describedby="emailHelp" />
  
-              {errors.idInputErr && <div id="emailHelp" style={{ color: "red" }} className="form-text">{errors["idInputErr"]?.message}</div>}
+              {errors.idInputErr && <div id="idInputHelp" style={{ color: "red" }} className="form-text">{errors["idInputErr"]?.message}</div>}
             </div>
           </div>
           <div className="row">
@@ -121,19 +136,18 @@ export default function PersonForm() {
                 ref={passwordErrVal}
                 className={classNames(errors.passwordErr?styles["inputErr"]:"","form-control")}
                 {...register("passwordErr", passwordErr.setting) }
-                onInput={handleSubmit(onSubmit)}
-                aria-describedby="emailHelp" />
+                // onInput={handleSubmit(onSubmit)}
+                aria-describedby="passwordHelp" />
               {errors.passwordErr && <div className="form-text"  style={{ color: "red" }}>{errors["passwordErr"]?.message}</div>}
-
+ 
             </div>
-
             <div className={`col-12 col-md-6`}>
-              <label htmlFor="exampleInputEmail1" className="form-label">請重新輸入密碼</label>
+              <label htmlFor="examplerepasswordEmail1" className="form-label">請重新輸入密碼</label>
               <input type="text"
                 ref={repasswordErrVal}
                 {...register("repasswordErr", repasswordErr.setting)}
                 className={classNames(errors.repasswordErr?styles["inputErr"]:"","form-control")}
-                 id="exampleInputEmail1" aria-describedby="emailHelp" />
+                 id="examplerepasswordEmail1" aria-describedby="examplerepasswordHelp" />
               {errors.repasswordErr && <div className="form-text"  style={{ color: "red" }}> {errors["repasswordErr"]?.message}</div>}
 
             </div>
@@ -145,20 +159,16 @@ export default function PersonForm() {
               className={classNames(errors.nameErr?styles["inputErr"]:"","form-control")}
               
               id="exampleInputName"
-                {...register("nameErr", {
-                  required: true, 
-                })}
+              {...register("nameErr", nameErr.setting) } 
+             
                 aria-describedby="nameErr" />
               {errors.nameErr && <div className="form-text"> {errors["passwordErr"]?.message}</div>}
             </div>
             <div className="col-12 col-md-6">
               <label htmlFor="exampleInputEmail1" className="form-label">暱稱</label>
               <input type="text"
-                {...register("nickErr", {
-                  required: true, 
-                })}
+              {...register("nameErr", nameErr.setting) }  
                 className={classNames(errors.nickErr?styles["inputErr"]:"","form-control")}
- 
                 id="exampleInputEmail1" aria-describedby="emailHelp" />
               {errors.nickErr && <div className="form-text"> {errors["nickErr"]?.message}</div>}
             </div>
@@ -222,7 +232,8 @@ export default function PersonForm() {
             <div className={`col-12 col-md-6`}>
               <label htmlFor="exampleInputEmail1" className="form-label">電話</label>
               <input type="text"  
-              className={classNames(errors.nickErr?styles["inputErr"]:""," form-control")}
+              {...register("phoneErr", phoneErr.setting) }   
+              className={classNames(errors.phoneErr?styles["inputErr"]:""," form-control")}
                 id="exampleInputEmail1" aria-describedby="emailHelp" />
               {errors.phoneErr && <div id="emailHelp" className="form-text">{errors["phoneErr"]?.message}</div>}
             </div>
