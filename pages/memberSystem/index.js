@@ -1,8 +1,9 @@
 
+import { useState } from "react"; 
 import Image from "next/image";
-import SelectMenu from "@/components/memberS/selectMenu";
-import PersonForm from "@/components/memberS/personForm";
-import SetPersonForm from "@/components/memberS/setPersonForm"; 
+import SelectMenu from "@/components/memberS/person/selectMenu";
+import PersonForm from "@/components/memberS/person/personForm";
+import SetPersonForm from "@/components/memberS/person/setPersonForm"; 
 import styles from "@/styles/form.module.css"
 import { FaSearch } from "react-icons/fa";
 import classNames from "classnames";
@@ -22,11 +23,9 @@ export default function Home() {
                   <PersonForm />
                 </div>
                 <div className="col-12 col-md-3">
-                <SetPersonForm />
-
+                <SetPersonForm /> 
                 </div>
-              </div>
-
+              </div> 
 
             </div>
           </div>

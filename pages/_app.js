@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css' 
 // import "@/styles/globals.css";  
+import '../styles/form.css'; // 导入全局 CSS 文件
 
 export default function App({ Component, pageProps }) { 
   const theme = {

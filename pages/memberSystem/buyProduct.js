@@ -1,5 +1,5 @@
 import React from 'react'
-import selectMenu from "@/components/memberS/selectMenu"
+import selectMenu from "@/components/memberS/person/selectMenu"
 import BuyPro from "@/components/memberS/qrcode/product"
 export default function buyProduct() {
   return (

@@ -53,7 +53,7 @@
   /* 內容外框 */
   .main-O-baground{
     padding: 3em;
-    background-color: rgba(255, 187, 92, 0.5);
+    background-color: rgb(255 246 233 / 50%);
   }
 
   .main-O-baground-border50{

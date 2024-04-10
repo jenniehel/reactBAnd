@@ -1,6 +1,6 @@
  
 import Image from "next/image";
-import SelectMenu from "@/components/memberS/selectMenu";
+import SelectMenu from "@/components/memberS/person/selectMenu";
 //  import PersonForm from "@/components/personForm";
 import CreditComponts from "@/components/memberS/creditForm";
 

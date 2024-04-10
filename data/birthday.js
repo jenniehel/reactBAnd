@@ -15,9 +15,14 @@ const  years = () => {
   };
   const date=(y,m)=> { 
     const lastDayOfMonth = dayjs(`${y}-${m}`).endOf('month').format('DD'); 
-    return Array(parseInt(lastDayOfMonth)).fill(1).map((v,i)=>{
+    if(parseInt(lastDayOfMonth)){
+         return Array(parseInt(lastDayOfMonth)).fill(1).map((v,i)=>{
       return i+1;
   })
+    }else{
+      return []
+    }
+ 
   };
   
   export default { years, month, date };

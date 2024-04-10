@@ -1,0 +1,71 @@
+input,
+select {
+  border: 2px solid #a32c2d !important;
+}
+.fxbtn {
+  width: 10em;
+  font-weight: bold;
+  color: #a32c2d;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5em;
+  border: 2px solid #a32c2d !important;
+}
+.fxbtngrey {
+  width: 10em;
+  font-weight: bold;
+  background-color: #a32c2d;
+  color: rgb(255, 255, 255);
+  border-radius: 5em;
+  border: 2px solid #000000 !important;
+}
+.list-group-item:hover {
+  color: red;
+}
+.list-group-item.active {
+  background-color: #a32c2d;
+}
+input.inputErr,
+select.inputErr {
+  border: 2px red solid !important;
+}
+/* selectmenu */
+.selectMenuPostion {
+  position: 'relative';
+  top: '-2em';
+}
+/* imgicon */
+.imgicon {
+  height: '125px';
+  position: 'relative';
+  height: '125px';
+  text-align: 'center';
+  bottom: '-2em';
+  margin: 'auto';
+  z-index: 5;
+}
+.imgIcon-b{
+    border-radius: "50%";
+}
+/* .setimgicon */
+.setimgicon {
+  height: '125px';
+  height: '125px';
+  text-align: 'center';
+  bottom: '-2em';
+  margin: 'auto';
+}
+.setimgiconInput {
+  height: '30px';
+  width: '1em';
+  opacity: 0;
+  z-index: 100;
+  width: '100%';
+  position: 'absolute';
+  left: '0';
+  top: '0';
+}
+@media (max-width: 990px) {
+  body {
+    /* background-color: red; */
+  }
+}

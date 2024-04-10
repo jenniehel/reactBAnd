@@ -26,8 +26,8 @@ export default function PersonForm() {
     setBirthM(dataBirth.month());  
   }, [])
  
-  const selectChange = () => {
-    const dateD = dataBirth.date(yearVal.current.value, monthVal.current.value);
+  const selectChange = (e) => {  
+    const dateD = dataBirth.date(yearVal.current.value, e.target.value);
     setBirthD(dateD)
   }
 
@@ -102,6 +102,33 @@ export default function PersonForm() {
       required: { value: true, message: "此欄位必填" },
     },
   } 
+  const yearErr={
+    name: "yearErr",
+    setting: {
+      pattern: {
+        value: /^[0-9]*$/,
+        message: "請填寫"
+      }
+    },
+  } 
+  const monthErr={
+    name: "monthErr",
+    setting: {
+      pattern: {
+        value: /^[0-9]*$/,
+        message: "請填寫"
+      }
+    },
+  } 
+  const dateErr={
+    name: "dateErr",
+    setting: {
+      pattern: {
+        value: /^[0-9]*$/,
+        message: "請填寫"
+      }
+    },
+  } 
 
 
     // 送出表單
@@ -122,8 +149,8 @@ export default function PersonForm() {
               <input type="text"
                 {...register("idInputErr", idInputErr.setting)}
                 // onInput={handleSubmit(onSubmit)}
-                // className={(errors.idInputErr && styles["inputErr"]) +" form-control"} 
-                className={classNames(errors.idInputErr?styles["inputErr"]:"","form-control")}
+                // className={(errors.idInputErr && "inputErr") +" form-control"} 
+                className={classNames(errors.idInputErr?"inputErr":"","form-control")}
                 id="exampleInputId" aria-describedby="emailHelp" />
  
               {errors.idInputErr && <div id="idInputHelp" style={{ color: "red" }} className="form-text">{errors["idInputErr"]?.message}</div>}
@@ -134,7 +161,7 @@ export default function PersonForm() {
               <label htmlFor="exampleInputPassword" className="form-label">密碼</label>
               <input type="text"  id="exampleInputPassword"
                 ref={passwordErrVal}
-                className={classNames(errors.passwordErr?styles["inputErr"]:"","form-control")}
+                className={classNames(errors.passwordErr?"inputErr":"","form-control")}
                 {...register("passwordErr", passwordErr.setting) }
                 // onInput={handleSubmit(onSubmit)}
                 aria-describedby="passwordHelp" />
@@ -146,7 +173,7 @@ export default function PersonForm() {
               <input type="text"
                 ref={repasswordErrVal}
                 {...register("repasswordErr", repasswordErr.setting)}
-                className={classNames(errors.repasswordErr?styles["inputErr"]:"","form-control")}
+                className={classNames(errors.repasswordErr?"inputErr":"","form-control")}
                  id="examplerepasswordEmail1" aria-describedby="examplerepasswordHelp" />
               {errors.repasswordErr && <div className="form-text"  style={{ color: "red" }}> {errors["repasswordErr"]?.message}</div>}
 
@@ -156,7 +183,7 @@ export default function PersonForm() {
             <div className={`col-12 col-md-6`}>
               <label htmlFor="exampleInputName" className="form-label">姓名</label>
               <input type="text"
-              className={classNames(errors.nameErr?styles["inputErr"]:"","form-control")}
+              className={classNames(errors.nameErr?"inputErr":"","form-control")}
               
               id="exampleInputName"
               {...register("nameErr", nameErr.setting) } 
@@ -165,12 +192,12 @@ export default function PersonForm() {
               {errors.nameErr && <div className="form-text"> {errors["passwordErr"]?.message}</div>}
             </div>
             <div className="col-12 col-md-6">
-              <label htmlFor="exampleInputEmail1" className="form-label">暱稱</label>
+              <label htmlFor="exampleInputEmail1" className="form-label" >暱稱</label>
               <input type="text"
-              {...register("nameErr", nameErr.setting) }  
-                className={classNames(errors.nickErr?styles["inputErr"]:"","form-control")}
+              {...register("nickErr", nickErr.setting) }  
+                className={classNames(errors.nickErr?"inputErr":"","form-control")}
                 id="exampleInputEmail1" aria-describedby="emailHelp" />
-              {errors.nickErr && <div className="form-text"> {errors["nickErr"]?.message}</div>}
+              {errors.nickErr && <div className="form-text" style={{ color: "red" }}> {errors["nickErr"]?.message}</div>}
             </div>
           </div>
           <div className="row">
@@ -180,39 +207,49 @@ export default function PersonForm() {
             <div className="col-12 col-md-4">
               <div className="face.input-group pa-1 " style={{ paddingRight: 0 }}>
 
-                <select className="form-select pa-0" ref={yearVal} defaultValue="Choose..." id="inputGroupSelect01">
+                <select className="form-select pa-0"
+                {...register("yearErr", yearErr.setting) } 
+                ref={yearVal} defaultValue="年" id="inputGroupSelect01">
 
-                  <option >年</option>
-                  {birthY.map((v, i) => {
-
+                  <option value='ooo'>年</option>
+                  {birthY.map((v, i) => { 
                     return <option value={v} key={v}>{v}</option>
                       ;
                   })}
-                </select>
+                  
+                </select>  
+                {errors.yearErr && <div className="form-text" style={{ color: "red" }}> {errors["yearErr"]?.message}</div>}
               </div>
             </div>
             <div className="col-12 col-md-4">
               <div className="face.input-group pa-1 " style={{ paddingRight: 0 }}>
-                <select className="form-select pa-0" ref={monthVal} onChange={() => selectChange()} defaultValue="Choose..." id="inputGroupSelect01">
-                  <option >月</option>
+                <select className="form-select pa-0" ref={monthVal}
+                {...register("monthErr", monthErr.setting) } 
+                onChange={(e)=>selectChange(e)} defaultValue="月" id="inputGroupSelect01">
+                  <option value="月">月</option>
 
                   {birthM.map((v, i) => {
                     return <option value={v} key={v}>{v}</option>
                       ;
                   })}
                 </select>
+                {errors.monthErr && <div className="form-text" style={{ color: "red" }}> {errors["monthErr"]?.message}</div>}
+
               </div>
             </div>
             <div className="col-12 col-md-4">
               <div className="face.input-group pa-1 " style={{ paddingRight: 0 }}>
-                <select className="form-select pa-0" defaultValue="Choose..." id="inputGroupSelect01">
+                <select className="form-select pa-0" 
+                {...register("dateErr", dateErr.setting) } 
+                defaultValue="Choose..." id="inputGroupSelect01">
                   <option >日</option>
                   {birthD.map((v, i) => {
-
                     return <option value={v} key={v}>{v}</option>
                       ;
                   })}
                 </select>
+                {errors.dateErr && <div className="form-text" style={{ color: "red" }}> {errors["dateErr"]?.message}</div>}
+
               </div>
             </div>
           </div>
@@ -220,22 +257,21 @@ export default function PersonForm() {
             <div className={`col-12 col-md-6`}>
               <label htmlFor="exampleInputEmail1" className="form-label">性別</label>
               <select  
-              className={classNames(errors.nickErr?styles["inputErr"]:""," form-select pa-0")}
+              className={classNames(""," form-select pa-0")}
               
-              defaultValue="Choose..." id="inputGroupSelect01">
-                <option value="0">性別</option>
+              defaultValue="0" id="inputGroupSelect01">
+                <option value="0">不透漏</option>
                 <option value="2">男</option>
                 <option value="2">女</option>
               </select>
-              {errors.sexErr && <div id="emailHelp" className="form-text">{errors["sexErr"]?.message}</div>}
             </div>
             <div className={`col-12 col-md-6`}>
               <label htmlFor="exampleInputEmail1" className="form-label">電話</label>
               <input type="text"  
               {...register("phoneErr", phoneErr.setting) }   
-              className={classNames(errors.phoneErr?styles["inputErr"]:""," form-control")}
+              className={classNames(errors.phoneErr?"inputErr":""," form-control")}
                 id="exampleInputEmail1" aria-describedby="emailHelp" />
-              {errors.phoneErr && <div id="emailHelp" className="form-text">{errors["phoneErr"]?.message}</div>}
+              {errors.phoneErr && <div id="emailHelp" className="form-text" style={{ color: "red" }}>{errors["phoneErr"]?.message}</div>}
             </div>
           </div>
 
@@ -245,7 +281,7 @@ export default function PersonForm() {
               <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
             </div>
           </div>
-          <div className="row mt-4"><button>送出</button></div>
+          <div className="row mt-4 justify-content-center"><button className='fxbtngrey'>送出</button></div>
         </form>
       </div>
     </div>

@@ -1,6 +1,6 @@
  
  
-import SelectMenu from "@/components/memberS/selectMenu";
+import SelectMenu from "@/components/memberS/person/selectMenu";
 import QrcodeRecord from "@/components/memberS/qrcode/qrcodeRecord" 
 import Step from "@/components/memberS/qrcode/step"; 
 import Search from "@/components/memberS/qrcode/searchbar"
