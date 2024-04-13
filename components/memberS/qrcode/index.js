@@ -1,5 +1,5 @@
 import React from 'react'   
-import QrcodeRecord from "@/components/memberS/qrcode/qrcodeRecord"
+import QrcodeRecord from "@/components/memberS/qrcode/exchange/qrcodeRecord"
 export default function Qrcode() {
   return (
     <div>

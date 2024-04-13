@@ -4,15 +4,14 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/form.module.css"
 import classNames from "classnames";
 
-import { useEffect, useState } from "react"; 
+import { useEffect, useState,useRef } from "react"; 
 
 const inter = Inter({ subsets: ["latin"] });
 
+// 選擇圖片
 export default function Setimg() {
   const [file, setFile] = useState(null); 
-
-
-
+  const fileInputRef = useRef(null); 
    // 選中的檔案
    const [selectedFile, setSelectedFile] = useState(null)
    // 預覽圖片(呼叫URL.createObjectURL得到的網址)
@@ -73,40 +72,56 @@ export default function Setimg() {
    // ^^^^^^^^^^^^^^ 這裡代表只有在selectedFile有變動(之後)才會執行
  
   // 修改圖片
-
+  const handleFileButtonClick = () => {
+    fileInputRef.current.click();
+  };
 
 
   return (
-    <>
+    <div className="setimg">
       <div className={classNames("md-5 setimgicon", styles.imgIconContent)} >
    
-        <label htmlFor="formFile" className="form-label">
+        <label htmlFor="formFile" className={classNames("imgIconWidth","form-label",styles["lg-open"])}>
           <Image
             src={previewUrl}
             alt='Mountains'
             width={125}
             height={125}
-            className={classNames("imgIcon", styles.ImageIcon)}
+            className={classNames("imgIcon")}
             objectFit='contain'
             style={{ borderRadius: "50%" }}
-          />
+          />  
         </label>
+        <label htmlFor="formFile" className={classNames("imgIconWidth","form-label",styles["md-open"])}>
+       <div className="imgIconWidth">
+       <Image
+       src={previewUrl}
+       alt='Mountain22s' 
+       className={classNames("imgIcon")}
+       width={200}
+       height={200}
+       objectFit='contain'
+       style={{ borderRadius: "50%" }}
+     />  
+       </div>
+       
+      </label>
         <div style={{ position: "relative" }}>
 
           <input
             className={classNames("form-control setimgiconInput imgIcon", styles.fileData)}
             onChange={handleFileChange}
+            ref={fileInputRef}
             accept="image/png,image/jpg"
-          
             type="file" id="formFile" />
 
 
-          <button className={classNames("card-body text-center fxbtn", styles["text-color"])} style={{ height: "30px", width: "6em" }}   >
+          <button   onClick={handleFileButtonClick}    className={classNames("card-body text-center fxbtn", styles["text-color"])}  >
             選擇圖片
           </button>
         </div>
 
       </div>
-    </>
+    </div>
   );
 } 

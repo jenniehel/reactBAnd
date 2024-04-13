@@ -1,5 +1,5 @@
 import React from 'react'  
-import Ticket from"@/components/memberS/qrcode/ticket"; 
+import Ticket from"@/components/memberS/ticket/ticket"; 
 export default function Qrcode() {
   return (
     <div>

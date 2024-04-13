@@ -22,7 +22,7 @@ export default function Home() {
         /> 
 
       </div>
-      <div className={classNames("card mb-2 pt-5 ", styles["border-1"])}  >
+      <div className={classNames("card pt-3 pb-3", styles["border-1"])}  >
         <div className={classNames("card-body text-center", styles["text-color"])}  >
           你今天想吃夜市嗎
         </div>

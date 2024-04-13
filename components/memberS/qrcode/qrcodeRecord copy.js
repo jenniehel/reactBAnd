@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import React from 'react' 
 import Image from 'next/image'
 import styles from "@/styles/form.module.css"
-import Ticket from"@/components/memberS/qrcode/ticket";
+import Ticket from"@/components/memberS/ticket/ticket";
 export default function Qrcode() {
   return (
     <div>

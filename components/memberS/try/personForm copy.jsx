@@ -1,6 +1,6 @@
 import React from 'react'
-import InputClass from './memberS/inputs-class'
-import InputDrop from './memberS/input-drop'
+import InputClass from '../inputs-class'
+import InputDrop from '../input-drop'
 import Inputbirthday from './memberS/input-drop-birthday'
 
 export default function PersonForm() {

@@ -1,10 +1,8 @@
 import classNames from 'classnames'
 import React from 'react' 
 import Image from 'next/image'
-import styles from "@/styles/form.module.css"
-import Step from "@/components/memberS/qrcode/step"
-import Ticket from"@/components/memberS/qrcode/ticket";
-import Step2 from "@/components/memberS/qrcode/step_card"
+import styles from "@/styles/form.module.css" 
+import Ticket from"@/components/memberS/ticket/ticket"; 
 export default function Qrcode() {
   return (
     <div>

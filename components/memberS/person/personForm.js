@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import styles from"@/styles/form.module.css"
 import memberFormUpdate from '@/api/memberFormUpdate';
 
-
+// 主頁面的form
 export default function PersonForm() {
   const yearVal = useRef();
   const monthVal = useRef();
@@ -141,6 +141,7 @@ export default function PersonForm() {
      }
   return (
     <div>
+    {/* // 主頁面的form */}
       <div className="container">
         <form onSubmit={handleSubmit(onSubmit)} method="POST">
           <div className="row">
@@ -203,7 +204,7 @@ export default function PersonForm() {
           <div className="row">
 
 
-            <h6 className='col-12'>生日</h6>
+          <label htmlFor="inputGroupSelect01" className="form-label" >生日</label>
             <div className="col-12 col-md-4">
               <div className="face.input-group pa-1 " style={{ paddingRight: 0 }}>
 
@@ -225,7 +226,7 @@ export default function PersonForm() {
               <div className="face.input-group pa-1 " style={{ paddingRight: 0 }}>
                 <select className="form-select pa-0" ref={monthVal}
                 {...register("monthErr", monthErr.setting) } 
-                onChange={(e)=>selectChange(e)} defaultValue="月" id="inputGroupSelect01">
+                onChange={(e)=>selectChange(e)} defaultValue="月" id="inputGroupSelect02">
                   <option value="月">月</option>
 
                   {birthM.map((v, i) => {
@@ -241,7 +242,7 @@ export default function PersonForm() {
               <div className="face.input-group pa-1 " style={{ paddingRight: 0 }}>
                 <select className="form-select pa-0" 
                 {...register("dateErr", dateErr.setting) } 
-                defaultValue="Choose..." id="inputGroupSelect01">
+                defaultValue="Choose..." id="inputGroupSelect03">
                   <option >日</option>
                   {birthD.map((v, i) => {
                     return <option value={v} key={v}>{v}</option>
@@ -255,30 +256,30 @@ export default function PersonForm() {
           </div>
           <div className="row">
             <div className={`col-12 col-md-6`}>
-              <label htmlFor="exampleInputEmail1" className="form-label">性別</label>
+              <label htmlFor="sexGroupSelect01" className="form-label">性別</label>
               <select  
               className={classNames(""," form-select pa-0")}
               
-              defaultValue="0" id="inputGroupSelect01">
+              defaultValue="0" id="sexGroupSelect01">
                 <option value="0">不透漏</option>
                 <option value="2">男</option>
                 <option value="2">女</option>
               </select>
             </div>
             <div className={`col-12 col-md-6`}>
-              <label htmlFor="exampleInputEmail1" className="form-label">電話</label>
+              <label htmlFor="exampleInputphone" className="form-label">電話</label>
               <input type="text"  
               {...register("phoneErr", phoneErr.setting) }   
               className={classNames(errors.phoneErr?"inputErr":""," form-control")}
-                id="exampleInputEmail1" aria-describedby="emailHelp" />
+                id="exampleInputphone" aria-describedby="emailHelp" />
               {errors.phoneErr && <div id="emailHelp" className="form-text" style={{ color: "red" }}>{errors["phoneErr"]?.message}</div>}
             </div>
           </div>
 
           <div className="row">
             <div className={`col-12 col-md-12`}>
-              <label htmlFor="exampleInputEmail1" className="form-label">地址(選填)</label>
-              <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+              <label htmlFor="exampleInputAddress" className="form-label">地址(選填)</label>
+              <input type="text" className="form-control" id="exampleInputAddress" aria-describedby="emailHelp" />
             </div>
           </div>
           <div className="row mt-4 justify-content-center"><button className='fxbtngrey'>送出</button></div>
