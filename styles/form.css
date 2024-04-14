@@ -1,6 +1,7 @@
 .text-color {
   color: #a32c2d !important;
 }
+
 .text-m-color{
   color: #000000;
 }
@@ -19,11 +20,20 @@
 .background-mmm {
   background-color: red;
 }
+.background-w {
+  background-color: white;
+}
 .full-width {
   width: 100%;
 }
 .border-1-bg {
   border-bottom: 1px solid rgb(200, 200, 200);
+}
+.border-1-main {
+  border: 1px solid #a32c2d;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.435);
 }
 .font-bold {
   font-weight: 1000;

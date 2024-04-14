@@ -5,7 +5,10 @@ import selectNav from "@/data/memberList";
 import Link from "next/link";
 import styles from "@/styles/form.module.css";
 import classNames from "classnames";
-
+import {
+  FaBars,
+  FaReceipt 
+} from 'react-icons/fa' 
 export default function Home() {
   const [memberPage, setMemberPage] = useState("memberData");
   const [selectpage, setSelectpage] = useState(selectNav.dataMobile);
@@ -23,13 +26,26 @@ export default function Home() {
 
   //  {/* select 表單選單 */}
   return (
-    <div className={classNames(styles["md-open"])}>
+    <div className={classNames(styles["md-open"],"border-1-main")}>
       {/* select 表單選單 */}
-      <div className="container"> 
-       <div className="accordion memeberList row" id="accordionExample">
+      <button
+      className="navbar-toggler text-color d-flex justify-content-center "
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent000"
+      aria-controls="navbarSupportedContent000"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+  
+  >
+      <FaBars/> 目錄 <FaReceipt />
+    </button>
+          
+      <div className="container collapse navbar-collapse" id="navbarSupportedContent000"> 
+       <div className="navbar-nav accordion memeberList row" >
         {selectpage.map((v, i) => (
-          <div className={`col-12 accordion-item ${v.list && 'accordion-drop'}`} key={i}>
-            <h2 className="accordion-header" id="headingOne">
+          <div className={`nav-item col-12 accordion-item ${v.list && 'accordion-drop'}`}  key={i}>
+            <h2 className=" accordion-header" id="headingOne">
               <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse${i}`} aria-expanded="true" aria-controls={`#collapse${i}`}>
               {v.title}
               </button>
