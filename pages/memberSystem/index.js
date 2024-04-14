@@ -20,8 +20,7 @@ export default function Home() {
             <div className={classNames("", styles["main-O-baground"])}>
               <div className={classNames("row", styles["main-O-baground-border50"], styles["setMdGrid"])}>
                 <div className="col-12 col-xl-9 xl-full-width">
-                <div className="container">
-                
+                <div className="container"> 
                 <PersonForm />
                 </div>
                 </div>

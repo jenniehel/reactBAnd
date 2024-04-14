@@ -297,4 +297,11 @@ input.imgIcon {
     position: relative;
     border: 0;
   }
+  .step { 
+    padding: 0px;
+    /* background-color: transparent; */
+  }
+  .stepPostion > *:nth-child(1) ,  .stepPostion > *:nth-child(3),  .stepPostion > *:nth-child(5) {
+    padding: 30px;
+  }
 }

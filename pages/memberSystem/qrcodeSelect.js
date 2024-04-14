@@ -23,7 +23,7 @@ export default function QrcodeselectMobile1() {
         <div className="col-12 col-md-8">
           <h4 className="text-title">[Qrcode兌換]</h4>
           <StepComputer stepLevel="1" />
-          <StepMobile />
+          <StepMobile stepLevel="1" />
           <Search />
 
           <h4 className='creditTitle credit   text-smtitle' style={{ border: 0 }}>我的商品</h4>
