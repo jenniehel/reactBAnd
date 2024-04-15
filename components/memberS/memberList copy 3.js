@@ -29,30 +29,19 @@ export default function Home() {
         {selectpage.map((v, i) => (
           <div className={`accordion-item ${v.list && 'accordion-drop'}`} key={i}>
             <h2 className="accordion-header" id="headingOne">
-              {v.href &&
-                <Link href={v.href}>
-                  <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse${i}`} aria-expanded="true" aria-controls={`#collapse${i}`}>
-                    {v.title}
-                  </button>
-                </Link>
-              }
-              {!v.href &&
-                  <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse${i}`} aria-expanded="true" aria-controls={`#collapse${i}`}>
-                    {v.title}
-                  </button>
-              }
+              <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse${i}`} aria-expanded="true" aria-controls={`#collapse${i}`}>
+              {v.title}
+              </button>
             </h2>
             {v.list &&
               v.list.map((v2, i2) => (
 
-                <div id={`collapse${i}`} key={v.title} className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <Link href={v2.href}>
-                  <div className="accordion-body">
-                    {v2.title}
-                    </div>
-                    </Link>
-                </div>
-              ))}
+              <div id={`collapse${i}`} key={v.title} className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div className="accordion-body">
+                {v2.title}
+                 </div>
+              </div>
+            ))}
 
           </div>
         ))}

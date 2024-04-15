@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styles from "@/styles/form.module.css"
 import Pagination from '@/components/memberS/others/pagination'
-export default function ticket() {
+export default function ticket({data}) {
   return (
     <div className={classNames(styles["lg-open"])}>
       <Point />
@@ -24,20 +24,21 @@ export default function ticket() {
         <div className={classNames("itemgroup item1", styles["mb-0"])}>
 
           <div className="card">
-            {/* flexBetween */}
-            {Array(4).fill(1).map(() => {
-              return( <div className={classNames(" card-body border-1-bg ", styles.flexBetween)}>
+            {/* flexBetween   {Array(4).fill(1).map(() => { */}
+            {data.map((v,i) => {
+              return( <div key={i} className={classNames(" card-body border-1-bg ", styles.flexBetween)}>
               <Image src="/ch.jpeg" alt="Description" width={60} height={60} />
                 <div className={classNames("", styles.flexBetween)}>
                   <div className="time" style={{ textAlign: 'center' }}>
-                       2024/0202    <br /> 
+                      {v.payment_date}  <br /> 
                         遊戲獎勵
                   </div>
 
                 </div>
                 <div className={classNames("countGroup", styles.flexBetween)}>
                   <div style={{ display: 'flex' }} classNames=""  >
-                    +10<h5>點</h5>
+                    {v.get_point&& <>+{v.get_point}<h5>點</h5>  </>} 
+                    {v.consume_gamepoint&& <>-{v.consume_gamepoint}<h5>點</h5>  </>} 
                   </div>
                   <div>
                   </div>

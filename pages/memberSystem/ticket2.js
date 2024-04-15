@@ -12,10 +12,12 @@ export default function ticket() {
             <SelectMenu />
           </div>
           <div className="col-12 col-xl-9">
+          <div className={classNames("", styles["main-O-baground"])}>
 
             <Ticket />
             <TicketMobile />
 
+          </div>
           </div>
         </div>
 

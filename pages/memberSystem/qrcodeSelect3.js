@@ -22,6 +22,8 @@ export default function QrcodeselectMobile1() {
         </div>
 
         <div className="col-12 col-md-8">
+        <div className={classNames("", styles["main-O-baground"])}>
+
           <h4 className="text-title">[Qrcode兌換]</h4>
           <StepComputer stepLevel="3" />
           <StepMobile stepLevel="3" />
@@ -44,6 +46,7 @@ export default function QrcodeselectMobile1() {
             <button type="submit" className={classNames("btn  px-5 mx-2", styles["btn-parmary"], styles["rd-30"])}>下一步 </button>
           </div>
 
+        </div>
         </div>
       </div>
 

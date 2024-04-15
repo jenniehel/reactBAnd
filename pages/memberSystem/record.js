@@ -11,11 +11,14 @@ export default function ticket() {
           <div className="col-12 col-xl-3 ">
             <SelectMenu />
           </div>
+        <div className={classNames("", styles["main-O-baground"])}>
+
           <div className="col-12 col-xl-9">
 
             <Record />
             <RecordMobile />
 
+          </div>
           </div>
         </div>
 
